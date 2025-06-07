@@ -1,0 +1,11 @@
+valence,year,acousticness,artists,danceability,duration_ms,energy,explicit,id,instrumentalness,key,liveness,loudness,mode,name,popularity,release_date,speechiness,tempo
+0.898,1994,0.321,"['Jason Weaver', 'Rowan Atkinson', 'Laura Williams']",0.6890000000000001,170880,0.5329999999999999,0,0qxtQ8rf3W1nId3D2r0xH4,7.37e-05,6,0.0958,-14.205,1,"I Just Can't Wait to Be King - From ""The Lion King""/Soundtrack Version",69,1994-01-01,0.0544,98.801
+0.0545,1982,0.994,"['Frédéric Chopin', 'Daniel Barenboim']",0.311,267600,0.00855,0,1UJBV22MUcqyiulqWR5rJt,0.92,5,0.0549,-27.482,1,"Nocturne No.4 In F, Op.15 No.1",34,1982-01-01,0.0384,73.188
+0.0411,1995,0.993,"['Frédéric Chopin', 'Janusz Olejniczak']",0.199,262600,0.00834,0,2loAdBnjOUb9B64pbviZ7N,0.882,11,0.0555,-28.213,1,"Nocturne in E minor, Op. 72, No. 1",41,1995,0.0389,63.573
+0.804,2000,0.252,['The Gladiators'],0.8109999999999999,224360,0.575,0,0NZspfNJq8C1YndmSwabMA,1.8e-06,7,0.0865,-8.347999999999999,1,Rich Man Poor Man,48,2000,0.185,139.899
+0.0529,1993,0.902,['John Williams'],0.117,474933,0.0843,0,7MW1YzseA4CGfrZMBLqQWK,0.882,7,0.0764,-20.023,1,Welcome To Jurassic Park,53,1993-05-25,0.038,81.65899999999998
+0.0996,1999,0.769,['Alan Silvestri'],0.191,210960,0.391,0,1FI5hblwy9ZwyPg4Jr5hni,0.901,8,0.17,-12.976,1,"Back To The Future: Back To The Future - From ""Back To The Future""",55,1999-09-20,0.0367,99.403
+0.0789,2012,0.417,['Adele'],0.34600000000000003,286480,0.552,0,6VObnIkLVruX4UVyxWhlqm,0.0,0,0.114,-6.864,0,Skyfall,74,2012-10-04,0.0282,75.881
+0.07,2004,0.991,['Ludovico Einaudi'],0.231,203800,0.0297,0,0Dkibk70FDp6t7eOZNemNQ,0.878,2,0.0742,-31.544,1,Una Mattina,70,2004-01-01,0.0579,131.41299999999998
+0.226,2012,0.606,['Alan Silvestri'],0.25,123360,0.5529999999999999,0,5SXsXjVJCWeJuf7FHvgBYR,0.6729999999999999,7,0.145,-8.187999999999999,1,The Avengers,66,2012-01-01,0.0429,118.985
+0.048,2014,0.951,['Hans Zimmer'],0.18,126960,0.226,0,6pWgRkpqVfxnj3WuIcJ7WP,0.982,9,0.0998,-16.457,0,Cornfield Chase,58,2014-11-18,0.042,94.079

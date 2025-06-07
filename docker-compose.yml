@@ -133,6 +133,7 @@ services:
       - SPARK_MASTER=spark://spark-master:7077
       - HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
       - PYSPARK_PYTHON=python3
+      - JUPYTER_TOKEN=
     ports:
       - "8888:8888"
     volumes:
