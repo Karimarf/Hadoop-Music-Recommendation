@@ -101,8 +101,8 @@ services:
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
-      - SPARK_DRIVER_MEMORY=16g       # 12 Go de heap pour le driver
-      - SPARK_EXECUTOR_MEMORY=16g     # si vous exécutez aussi des executors ici
+      - SPARK_DRIVER_MEMORY=16g
+      - SPARK_EXECUTOR_MEMORY=16g
       - SPARK_EXECUTOR_CORES=2
     ports:
       - "8080:8080"  # UI Master
@@ -143,7 +143,6 @@ services:
       - "4040:4040"
     volumes:
       - ./notebooks:/home/jovyan/work
-      -
     depends_on:
       - spark-master
       - hadoop-namenode-1

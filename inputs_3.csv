@@ -1,6 +1,0 @@
-valence,year,acousticness,artists,danceability,duration_ms,energy,explicit,id,instrumentalness,key,liveness,loudness,mode,name,popularity,release_date,speechiness,tempo
-0.662,2013,0.0239,"['A$AP Rocky', 'Drake', '2 Chainz', 'Kendrick Lamar']",0.853,233787,0.693,1,4X5f3vT8MRuXF68pfjNte5,0.0,1,0.11,-6.87,1,"F**kin' Problems (feat. Drake, 2 Chainz & Kendrick Lamar)",76,2013,0.275,95.967
-0.426,2013,0.0927,"['Justin Timberlake', 'JAY-Z']",0.797,269147,0.611,0,4mQVHEjrnuUd7G5IVhSYTk,1.37e-06,11,0.259,-4.99,0,Suit & Tie (feat. JAY Z) (feat. Jay-Z) - [Radio Edit],60,2013-01-15,0.183,102.034
-0.119,2015,0.0403,"['Drake', 'Travis Scott']",0.6509999999999999,252640,0.55,1,6ImxYXeLDQPIv4qo7bMhSk,0.0,7,0.165,-8.215,1,Company,61,2015-02-12,0.0496,107.567
-0.625,2013,0.397,['Eminem'],0.708,363521,0.843,1,6or1bKJiZ06IlK0vFvY75k,0.0,7,0.799,-2.66,1,Rap God,77,2013-11-05,0.314,148.14
-0.464,2013,0.0119,"['Lil Wayne', 'Drake', 'Future']",0.674,253440,0.608,1,7tGlzXJv6GD5e5qlu5YmDg,0.0,8,0.103,-6.627999999999999,0,Love Me,68,2013-01-01,0.0334,124.952
