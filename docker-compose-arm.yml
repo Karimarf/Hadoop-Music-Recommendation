@@ -96,14 +96,17 @@ services:
     platform: linux/arm64
     environment:
       - SPARK_MODE=master
+      - SPARK_USER=spark
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
-      - SPARK_USER=spark
+      - SPARK_DRIVER_MEMORY=16g
+      - SPARK_EXECUTOR_MEMORY=16g
+      - SPARK_EXECUTOR_CORES=2
     ports:
-      - "8080:8080"
-      - "7077:7077"
+      - "8080:8080"  # UI Master
+      - "7077:7077"  # port de connexion des workers
     depends_on:
       - hadoop-namenode-1
       - hadoop-namenode-2
@@ -115,8 +118,10 @@ services:
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_WORKER_CORES=1
+      - SPARK_DAEMON_MEMORY=16g
+      - SPARK_WORKER_CORES=2
+      - SPARK_EXECUTOR_MEMORY=16g
+      - SPARK_EXECUTOR_CORES=2
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
@@ -135,6 +140,7 @@ services:
       - PYSPARK_PYTHON=python3
     ports:
       - "8888:8888"
+      - "4040:4040"
     volumes:
       - ./notebooks:/home/jovyan/work
     depends_on:

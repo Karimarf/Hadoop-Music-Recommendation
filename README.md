@@ -31,7 +31,7 @@ docker-compose up -d
 
 #### a. Copy `data.csv` from your local machine to the NameNode container:
 ```bash
-docker cp data.csv hadoop-namenode-1:/tmp/data.csv
+docker cp ./data hadoop-namenode-1:/tmp/
 ```
 
 #### b. Open a shell in the NameNode:
@@ -41,8 +41,7 @@ docker exec -it hadoop-namenode-1 bash
 
 #### c. Put the file into HDFS:
 ```bash
-hdfs dfs -mkdir -p /data
-hdfs dfs -put /tmp/data.csv /data/
+hdfs dfs -put /tmp/data /
 ```
 
 ---
