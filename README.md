@@ -74,7 +74,7 @@ Ce projet déploie un pipeline d’analyse de données et de recommandation musi
 1. Installer les dépendances :
 
    ```bash
-   pip install -r requirements.txt
+   pip install pyproject.toml
    ```
 
 2. Lancer l’app :
