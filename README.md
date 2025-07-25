@@ -1,90 +1,92 @@
+# 🎵 Hadoop Music Recommendation System
 
-# 🎵 Music Analysis & Recommendation System with Spark + Hadoop
+Ce projet déploie un pipeline d’analyse de données et de recommandation musicale à grande échelle en combinant **Apache Hadoop (HDFS)**, **Apache Spark** et **Docker**. Les données proviennent d’un dataset Spotify (fichier CSV) et sont traitées via PySpark, puis modélisées sur GPU avec RAPIDS (cuDF, cuML).
 
-This project builds a distributed data analysis and recommendation pipeline using **Apache Spark**, **Hadoop HDFS**, and **PySpark notebooks**, based on a Spotify dataset.
+## 🚀 Prérequis
 
----
+- **Docker** et **Docker Compose** installés sur votre machine
+- Python 3.8+ (pour exécuter l’application Streamlit)
 
-## 📦 Stack
+## 📦 Architecture
 
-- Hadoop (HDFS)
-- Apache Spark (Master + Worker)
-- PySpark (Jupyter client)
-- Docker / Docker Compose
-- Dataset: [`data.csv`](./data.csv) from [Kaggle Spotify Dataset](https://www.kaggle.com/code/vatsalmavani/music-recommendation-system-using-spotify-dataset/input)
+- **HDFS** : stockage distribué des fichiers (CSV, Parquet)
+- **Spark** : traitement distribué (DataFrame, MLlib)
+- **RAPIDS** (cuDF, cuML) : accélération GPU pour le clustering
+- **Streamlit** : interface web de recommandations musicales
 
----
-
-## 🚀 Getting Started
-
-### 1. 🐳 Launch the cluster
-
-Start your Hadoop + Spark + Jupyter cluster:
-
-```bash
-docker-compose up -d
-```
-
----
-
-### 2. 📁 Copy your dataset to HDFS
-
-#### a. Copy `data.csv` from your local machine to the NameNode container:
-```bash
-docker cp ./data hadoop-namenode-1:/tmp/
-```
-
-#### b. Open a shell in the NameNode:
-```bash
-docker exec -it hadoop-namenode-1 bash
-```
-
-#### c. Put the file into HDFS:
-```bash
-hdfs dfs -put /tmp/data /
-```
-
----
-
-## 📊 Data Analysis (Jupyter)
-
-1. Access Jupyter Notebook:
-   - 👉 http://localhost:8888
-
-2. Open or create a notebook.
-3. Use PySpark to:
-   - Inspect the data (`df.printSchema()`, `df.show()`)
-   - Explore audio features (`valence`, `danceability`, `energy`, etc.)
-   - Analyze trends by `year`, `popularity`, `artists`, etc.
-   - Prepare for clustering or recommendation models
-
----
-
-## 🎧 Goal
-
-> **Build a music recommendation system** based on audio features using Spark MLlib.
-
-You’ll cluster similar songs (unsupervised learning) and recommend tracks based on the user’s listening profile.
-
----
-
-## 🧪 Sample PySpark analysis
-
-```python
-df = spark.read.option("header", True).option("inferSchema", True).csv("hdfs://hadoop-namenode-1:8020/data/data.csv")
-df.groupBy("year").count().orderBy("year").show()
-```
-
----
-
-## 📁 Project Structure
+## 📁 Structure du projet
 
 ```text
-.
-├── data.csv                  # Spotify dataset
-├── docker-compose.yml        # Hadoop + Spark cluster  
-├── docker-compose-arm.yml    # For Mac and Linux
-├── notebooks/                # Your PySpark notebooks
-└── README.md
+├── data/                         # Données brutes
+│   └── data.csv                  # Dataset Spotify initial
+├── notebooks/                    # Notebooks PySpark & RAPIDS
+│   ├── data_preparation.ipynb    # Nettoyage, vectorisation, PCA, export Parquet
+│   └── model_training.ipynb      # Clustering GPU, choix de k, export CSV/Joblib
+├── app.py                        # Application Streamlit
+├── data_for_clustering.parquet   # Fichier Parquet pour entraînement GPU
+├── spotify_clustered.csv         # Résultat du clustering K-Means
+├── nn_model.joblib               # Modèle KNN des plus proches voisins
+├── docker-compose.yml            # Déploiement Hadoop + Spark (x86)
+├── docker-compose-arm.yml        # Déploiement Hadoop + Spark (ARM)
+└── README.md                     # Documentation du projet
 ```
 
+## 🚀 Démarrage de l’environnement Hadoop + Spark
+
+1. Lancer les conteneurs :
+
+   ```bash
+   docker-compose up -d
+   ```
+
+2. Copier les données dans HDFS :
+
+   ```bash
+   docker cp data/data.csv hadoop-namenode-1:/tmp/
+   docker exec -it hadoop-namenode-1 bash
+   hdfs dfs -mkdir -p /data
+   hdfs dfs -put /tmp/data/data.csv /data/
+   ```
+
+3. Accéder à Spark UI (http://localhost:8080) et Jupyter (http://localhost:8888, token dans les logs).
+
+## 📝 Notebooks PySpark
+
+### data_preparation.ipynb
+
+1. Lecture du CSV depuis HDFS  
+2. Nettoyage et conversion des colonnes  
+3. Imputation des valeurs manquantes (moyenne)  
+4. Assemblage des features et normalisation (StandardScaler)  
+5. Réduction de dimension (PCA)  
+6. Export Parquet (`data_for_clustering.parquet`)
+
+### training.ipynb
+
+1. Chargement du Parquet avec cuDF  
+2. Recherche du nombre optimal de clusters (Elbow + Silhouette)  
+3. Entraînement final de K-Means (k=9)  
+4. Sérialisation du résultat (`spotify_clustered.csv`)  
+5. Entraînement du modèle KNN (NearestNeighbors) et export Joblib (`nn_model.joblib`)
+
+## 🎧 Application de recommandation (Streamlit)
+
+1. Installer les dépendances :
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Lancer l’app :
+
+   ```bash
+   streamlit run app.py
+   ```
+
+3. Sélectionner un titre et une méthode (KNN ou K-Means) pour obtenir des recommandations.
+
+## 🔧 Personnalisation
+
+- Ajuster le nombre de composantes PCA (`k`) dans `data_preparation.ipynb`
+- Modifier `n_clusters` ou `n_init` dans `model_training.ipynb`
+- Adapter la pondération par `popularity` dans `app.py`
